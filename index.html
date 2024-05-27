@@ -11,38 +11,59 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
 
     <div id="app">
-        <input type="text" v-model="inputValue">
-        <h1>Hello {{ inputValue }}</h1>
-        <ul>
-            <li v-for="(item, index) in list">
-                My name is: {{ item }} {{ index }}
-            </li>
-        </ul>
-        <template v-for="(value, key) in objectLists">
-            <h1>{{ value }}</h1>
-            <h2>{{ key }}</h2>
-        </template>
+        <my-component></my-component>
+    </div>
+
+    <div id="app2">
+        <my-component></my-component>
     </div>
 
     <script>
-        new Vue({
-            el: '#app',
-            data: {
-                inputValue: 'World!',
-                list: [
-                    'Sergey',
-                    'Alex',
-                ],
-                objectLists: {
-                    10: true,
-                    'keyName': 'Some value',
-                },
+        const component = {
+            template: `
+              <div>
+                <input type="text" v-model="inputValue">
+                <h1>Hello {{ inputValue }}</h1>
+                <ul>
+                  <li v-for="(item, index) in list">
+                    My name is: {{ item }} {{ index }}
+                  </li>
+                </ul>
+                <template v-for="(value, key) in objectLists">
+                  <h1>{{ value }}</h1>
+                  <h2>{{ key }}</h2>
+                </template>
+              </div>
+            `,
+            data: function () {
+                return {
+                    inputValue: 'World!',
+                    list: [
+                        'Sergey',
+                        'Alex',
+                    ],
+                    objectLists: {
+                        10: true,
+                        'keyName': 'Some value',
+                    },
+                }
             },
             watch: {
                 inputValue: function(value) {
-                    console.log(value, 22);
+                    console.log(value);
                 }
             }
+        };
+
+        new Vue({
+            el: '#app',
+            components: {
+                myComponent: component
+            }
+        })
+
+        new Vue({
+            el: '#app2',
         })
     </script>
 </body>
