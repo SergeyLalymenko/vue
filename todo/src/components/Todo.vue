@@ -4,7 +4,7 @@
         :class="[todo.isCompleted ? 'completed' : 'uncompleted']"
         @click="toggleTodo(todo.id)"
     >
-        {{ todo.action }}
+        {{ todo.text }}
     </div>
 </template>
 
@@ -18,7 +18,7 @@
         },
         methods: {
             toggleTodo: function(id) {
-                eventEmitter.$emit('hahaEvent', id);
+                eventEmitter.$emit('toggleTodo', id);
             }
         }
     }
