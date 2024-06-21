@@ -8,23 +8,39 @@
                 v-for="(todo, index) in todos"
                 :key="index"
                 :todo="todo"
+                :deleteTodo="deleteTodo"
             />
         </div>
-        <Modal title="Add todo" :isOpen="isOpenModal" :onToggle="onToggleModal">
-            <form>
-                <label for="#title">Title:</label>
+        <Modal
+            title="Add todo"
+            :isOpen="isOpenModal"
+            :onToggle="onToggleModal"
+        >
+            <pre>
+                {{ $v }}
+            </pre>
+            <form @submit.prevent="onSubmit">
+                <label for="#description">Description:</label>
                 <input
                     type="text"
-                    id="title"
-                    v-model="title"
-                    @blur="$v.title.$touch()"
+                    id="description"
+                    v-model="description"
+                    @blur="$v.description.$touch()"
                 />
-                <p v-if="$v.title.$error">
-                    Error text
-                </p>
-                <pre>
-                    {{ $v }}
-                </pre>
+                <template v-if="$v.description.$error">
+                    <p v-if="!$v.description.required">
+                        Required
+                    </p>
+                    <p v-else-if="!$v.description.minLength">
+                        Min length
+                    </p>
+                    <p v-if="!$v.description.maxLength">
+                        Max length
+                    </p>
+                </template>
+                <button :disabled="$v.$invalid" type="submit">
+                    Add
+                </button>
             </form>
         </Modal>
     </div>
@@ -34,7 +50,7 @@
 import { eventEmitter } from '../main'
 import Todo from './Todo.vue'
 import Modal from './Modal.vue'
-import { required } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 
 export default {
     name: 'Todos',
@@ -43,32 +59,47 @@ export default {
             todos: [
                 {
                     id: 1,
-                    text: 'Do something 1',
+                    description: 'Do something 1',
                     isCompleted: false
                 },
                 {
                     id: 2,
-                    text: 'Do something 2',
+                    description: 'Do something 2',
                     isCompleted: true
                 },
                 {
                     id: 3,
-                    text: 'Do something 3',
+                    description: 'Do something 3',
                     isCompleted: false
                 }
             ],
             isOpenModal: false,
-            title: ''
+            description: ''
         }
     },
     methods: {
+        deleteTodo(id) {
+            this.todos = this.todos.filter((todo) => todo.id !== id);
+        },
         onToggleModal() {
             this.isOpenModal = !this.isOpenModal;
+        },
+        onSubmit() {
+            const newTodo = {
+                id: Date.now(),
+                description: this.description,
+                isCompleted: false
+            }
+
+            this.todos.push(newTodo);
+            this.onToggleModal();
         }
     },
     validations: {
-        title: {
-            required
+        description: {
+            required,
+            minLength: minLength(2),
+            maxLength: maxLength(20)
         }
     },
     components: {

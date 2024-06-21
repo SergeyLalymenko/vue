@@ -4,7 +4,10 @@
         :class="[todo.isCompleted ? 'completed' : 'uncompleted']"
         @click="toggleTodo(todo.id)"
     >
-        {{ todo.text }}
+        {{ todo.description }}
+        <p @click.stop="deleteTodo(todo.id)">
+            DELETE
+        </p>
     </div>
 </template>
 
@@ -14,7 +17,8 @@
     export default {
         name: 'todo',
         props: {
-            todo: Object
+            todo: Object,
+            deleteTodo: Function
         },
         methods: {
             toggleTodo: function(id) {
