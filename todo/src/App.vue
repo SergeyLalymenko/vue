@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-      <Todos/>
+      <Navigation />
+      <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Todos from './components/Todos'
+import Navigation from './components/Navigation.vue';
 
 export default {
     name: 'App',
     components: {
-        Todos
+        Navigation
     }
 }
 </script>
