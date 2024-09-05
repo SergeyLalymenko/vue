@@ -8,9 +8,9 @@ const todos = useState('todos', () => []);
 const isOpenModal = ref(false);
 const inputValue = ref('');
 
-useFetch(`${BASE_API_URL}todos`, {
-    onResponse({ response }) {
-        todos.value = response._data;
+const { data: fetchedTodos } = useFetch(`${BASE_API_URL}todos`, {
+    onResponse() {
+        todos.value = fetchedTodos;
     }
 });
 
@@ -100,16 +100,16 @@ useHead({
 </script>
 
 <template>
-    <div class="todo-list">
-        <div class="todo-list__wrapper wrapper">
+    <div class="todo-list mt-20">
+        <div class="container mx-auto px-4">
             <UIButton
                 @click="toggleModal"
                 :config="toggleModalButtonConfig"
             >
                 Add Todo
             </UIButton>
-            <div class="todo-list__todos-box" v-if="todos.length">
-                <TransitionGroup class="todo-list__todos" name="todos" tag="ul" appear>
+            <div class="mt-5" v-if="todos.length">
+                <TransitionGroup class="relative" name="todos" tag="ul" appear>
                     <ComponentTodoItem
                         v-for="todo in todos"
                         :key="todo.id"
@@ -117,17 +117,17 @@ useHead({
                         @toggleTodo="toggleTodo"
                         @editTodo="editTodo"
                         @deleteTodo="deleteTodo"
-                        class="todo-list__todo"
+                        class="mt-1 first:mt-0"
                     />
                 </TransitionGroup>
             </div>
-            <div v-else class="todo-list__loading">
+            <div v-else class="mt-5">
                 Loading...
             </div>
             <ComponentModal :config="modalConfig" :isOpen="isOpenModal" @toggleModal="toggleModal">
-                <form class="todo-list__form" @submit.prevent="onSubmit">
+                <form @submit.prevent="onSubmit">
                     <UIInput v-model="inputValue" />
-                    <UIButton class="todo-list__button" :config="addTodoButtonConfig">
+                    <UIButton class="mt-5 mx-auto" :config="addTodoButtonConfig">
                         Submit
                     </UIButton>
                 </form>
@@ -138,42 +138,6 @@ useHead({
 
 <style lang="scss" scoped>
 .todo-list {
-    margin-top: 60px;
-    
-    &__wrapper {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    &__todos-box {
-        margin-top: 20px;
-        width: 100%;
-    }
-
-    &__loading {
-        margin-top: 20px;
-    }
-
-    &__todos {
-        position: relative;
-    }
-
-    &__todo {
-        margin-top: 5px;
-
-        &:first-child {
-            margin-top: 0;
-        }
-    }
-
-    &__form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    &__button {
-        margin: 40px auto 0;
-    }
 
     .todos-move,
     .todos-enter-active,

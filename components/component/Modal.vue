@@ -1,5 +1,4 @@
 <script setup>
-import { Teleport, Transition } from 'vue';
 const props = defineProps(['config', 'isOpen']);
 defineEmits(['toggleModal']);
 
@@ -17,15 +16,23 @@ const config = {
 <template>
     <Teleport to="body">
         <Transition name="modal" :duration="400">
-            <div class="modal" v-if="isOpen" @click="$emit('toggleModal')">
-                <div class="modal__wrapper" :class="[config.size]" @click.stop>
-                    <div class="modal__header">
-                        <h4 class="modal__header-title">
+            <div
+                class="modal fixed top-0 left-0 bg-text/20 z-30 w-screen h-screen"
+                v-if="isOpen"
+                @click="$emit('toggleModal')"
+            >
+                <div
+                    class="modal__wrapper absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-5 bg-background rounded-lg w-11/12"
+                    :class="[config.size]"
+                    @click.stop
+                >
+                    <div class="flex justify-between gap-10">
+                        <h4>
                             {{ config.title }}
                         </h4>
                         <UIClose @click="$emit('toggleModal')" />
                     </div>
-                    <div class="modal__content">
+                    <div class="mt-10">
                         <slot />
                     </div>
                 </div>
@@ -36,23 +43,8 @@ const config = {
 
 <style lang="scss" scoped>
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba($colorText, .2);
-    z-index: 90;
 
     &__wrapper {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 20px;
-        background: $colorBackground;
-        border-radius: 10px;
-        width: calc(100% - 30px);
 
         &.sm {
             max-width: 520px;
@@ -65,16 +57,6 @@ const config = {
         &.xl {
             max-width: 1120px;
         }
-    }
-
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        gap: 40px;
-    }
-
-    &__content {
-        margin-top: 40px;
     }
 }
 

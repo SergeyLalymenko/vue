@@ -18,7 +18,8 @@ export default defineNuxtConfig({
                 autoImports: ['defineStore', 'acceptHMRUpdate']
             }
         ],
-        'nuxt-lodash'
+        'nuxt-lodash',
+        '@nuxtjs/tailwindcss'
     ],
     imports: {
         dirs: ['stores']

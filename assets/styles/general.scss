@@ -1,3 +1,7 @@
+html {
+    font-size: 16px;
+}
+
 body {
     font-family: "Rubik", sans-serif;
     font-size: 16px;
@@ -8,41 +12,41 @@ body {
 }
 
 h1 {
-    font-size: 52px;
+    font-size: 3.25rem;
     font-weight: 700;
 }
 
 h2 {
-    font-size: 42px;
+    font-size: 2.75rem;
     font-weight: 600;
 }
 
 h3 {
-    font-size: 36px;
+    font-size: 2.25rem;
     font-weight: 600;
 }
 
 h4 {
-    font-size: 28px;
+    font-size: 1.75rem;
     font-weight: 500;
 }
 
 h5 {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 500;
 }
 
 h6 {
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 p {
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 a {
     position: relative;
-    font-size: 16px;
+    font-size: 1rem;
     text-decoration: none;
     color: $colorLink;
     transition: .2s;
@@ -69,17 +73,17 @@ a {
     }
 }
 
-.wrapper {
-    display: flex;
-    width: 100%;
-    max-width: 1170px;
-    padding: 0 30px;
-    margin: 0 auto;
-}
+// .wrapper {
+//     display: flex;
+//     width: 100%;
+//     max-width: 1170px;
+//     padding: 0 30px;
+//     margin: 0 auto;
+// }
 
 button, input, select {
     font-family: "Rubik", sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1;
     font-weight: 400;
     outline: none;
