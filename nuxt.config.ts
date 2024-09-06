@@ -19,8 +19,24 @@ export default defineNuxtConfig({
             }
         ],
         'nuxt-lodash',
-        '@nuxtjs/tailwindcss'
+        '@nuxtjs/tailwindcss',
+        'nuxt-vuefire'
     ],
+    vuefire: {
+        auth: {
+            enabled: true,
+            sessionCookie: true
+        },
+        config: {
+            apiKey: 'AIzaSyA0Fyfuo7PfLWB0lcV3o8AaltxRj2JWGbw',
+            authDomain: 'vue3-f65b5.firebaseapp.com',
+            projectId: 'vue3-f65b5',
+            storageBucket: 'vue3-f65b5.appspot.com',
+            messagingSenderId: '645055557829',
+            appId: '1:645055557829:web:be79f7e19fb305130c80ac',
+            measurementId: 'G-BEKVVMMTSV'
+        },
+    },
     imports: {
         dirs: ['stores']
     },

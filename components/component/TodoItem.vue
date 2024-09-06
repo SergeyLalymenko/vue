@@ -5,39 +5,30 @@ defineEmits(['toggleTodo', 'editTodo', 'deleteTodo']);
 
 <template>
     <li
-        class="todo"
+        class="todo flex items-center w-full p-2 border-solid border border-border transition-colors duration-200 cursor-pointer"
         :class="{ completed: todo.isCompleted }"
         @click="$emit('toggleTodo', todo.id)"
         >
-        <p class="todo__text">
+        <p class="mr-10">
             {{ todo.title }}
         </p>
-        <UIEdit @click.stop="$emit('editTodo', todo.id)" size="sm" class="todo__edit" />
-        <UIClose @click.stop="$emit('deleteTodo', todo.id)" size="sm" />
+        <UIEdit
+            @click.stop="$emit('editTodo', todo.id)"
+            size="sm"
+            class="ml-auto mr-2"
+        />
+        <UIClose
+            @click.stop="$emit('deleteTodo', todo.id)"
+            size="sm"
+        />
     </li>
 </template>
 
 <style lang="scss" scoped>
 .todo {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid $colorBorder;
-    transition: .2s;
-    cursor: pointer;
 
     &.completed {
         border-color: $colorActive;
-    }
-
-    &__text {
-        margin-right: 40px;
-    }
-
-    &__edit {
-        margin-left: auto;
-        margin-right: 10px;
     }
 }
 </style>

@@ -1,7 +1,3 @@
-<script setup>
-const testStore = useTestStore();
-</script>
-
 <template>
     <div class="home mt-20">
         <div class="container mx-auto px-4">
@@ -9,7 +5,6 @@ const testStore = useTestStore();
                 Hi!<br>
                 Here you can see a few vue projects!
             </h1>
-            {{ testStore.count }}
         </div>
     </div>
 </template>

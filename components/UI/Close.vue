@@ -4,7 +4,10 @@ const size = props.size || 'md';
 </script>
 
 <template>
-    <div class="close" :class="[size]">
+    <div
+        class="close relative rounded-full border-solid border border-border p-1 transition-colors duration-200 cursor-pointer"
+        :class="[size]"
+    >
         <div></div>
         <div></div>
     </div>
@@ -12,12 +15,6 @@ const size = props.size || 'md';
 
 <style lang="scss" scoped>
 .close {
-    position: relative;
-    border-radius: 50%;
-    border: 1px solid $colorBorder;
-    padding: 5px;
-    transition: .2s;
-    cursor: pointer;
 
     &.sm {
         width: 20px;

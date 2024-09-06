@@ -7,8 +7,14 @@ const {
 </script>
 
 <template>
-    <div class="table" :class="{ isActiveGame: chessState.isActiveGame }">
-        <div v-if="Object.keys(chessState).length" class="table__inner">
+    <div
+        class="table w-full pointer-events-none"
+        :class="{ active: chessState.isActiveGame }"
+    >
+        <div
+            v-if="Object.keys(chessState).length"
+            class="flex flex-wrap w-full max-w-3xl border-solid border border-border mx-auto"
+        >
             <template v-for="rowData in chessState.table">
                 <ComponentChessCell v-for="cellData in rowData" :cellData :key="`${cellData.coordinates.y}${cellData.coordinates.x}`" />
             </template>
@@ -21,20 +27,9 @@ const {
 
 <style lang="scss" scoped>
 .table {
-    width: 100%;
-    pointer-events: none;
 
-    &.isActiveGame {
+    &.active {
         pointer-events: all;
-    }
-
-    &__inner {
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-        max-width: 800px;
-        border: 1px solid $colorBorder;
-        margin: 0 auto;
     }
 }
 </style>

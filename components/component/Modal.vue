@@ -17,7 +17,7 @@ const config = {
     <Teleport to="body">
         <Transition name="modal" :duration="400">
             <div
-                class="modal fixed top-0 left-0 bg-text/20 z-30 w-screen h-screen"
+                class="modal fixed top-0 left-0 bg-overley z-30 w-screen h-screen"
                 v-if="isOpen"
                 @click="$emit('toggleModal')"
             >

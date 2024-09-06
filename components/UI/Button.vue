@@ -32,12 +32,12 @@ const config = {
     }
     
     &.md {
-        padding: 16px 26px;
+        padding: 16px 24px;
         font-size: 1.25rem;
     }
 
     &.xl {
-        padding: 20px 30px;
+        padding: 20px 28px;
         font-size: 1.25rem;
     }
     

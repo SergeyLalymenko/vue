@@ -65,7 +65,7 @@ onUpdated(() => {
         }"
         @click="onCellClick"
     >
-        <img class="cell__figure" :src="cellData.figure.icon" />
+        <img class="w-1/2" :src="cellData.figure.icon" />
     </div>
     <div
         v-else
@@ -85,11 +85,11 @@ onUpdated(() => {
     justify-content: center;
     aspect-ratio: 1 / 1;
     width: calc(100% / 8);
-    background: rgb(54, 51, 51);
+    background: $colorChessCellBlack;
     border: 5px solid transparent;
 
     &.white {
-        background: white;
+        background: $colorChessCellWhite;
     }
 
     &.active {
@@ -107,10 +107,6 @@ onUpdated(() => {
 
     &.currentTeam {
         cursor: pointer;
-    }
-
-    &__figure {
-        width: 50%;
     }
 }
 </style>

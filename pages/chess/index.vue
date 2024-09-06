@@ -318,8 +318,8 @@ watch(
 </script>
 
 <template>
-    <div class="chess">
-        <div class="chess__wrapper wrapper">
+    <div class="chess my-20">
+        <div class="container mx-auto px-4 flex flex-col items-center">
             <ModuleChessTable />
             <ComponentModal :config="modalConfig" :isOpen="modal.isOpen" @toggleModal="toggleModal">
                 <h5>
@@ -327,7 +327,7 @@ watch(
                 </h5>
             </ComponentModal>
             <UIButton
-                class="chess__new-game"
+                class="mt-10"
                 :config="buttonConfig"
                 @click="initNewGame"
             >
@@ -336,19 +336,3 @@ watch(
         </div>
     </div>
 </template>
-
-<style lang="scss" scoped>
-.chess {
-    margin-top: 60px;
-    margin-bottom: 60px;
-
-    &__wrapper {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    &__new-game {
-        margin-top: 40px;
-    }
-}
-</style>

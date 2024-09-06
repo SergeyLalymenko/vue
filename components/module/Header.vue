@@ -1,6 +1,6 @@
 <template>
     <header class="header w-full border-solid border-b border-divider">
-        <div class="container mx-auto px-4 py-5">
+        <div class="container mx-auto px-4 py-5 relative">
             <ul class="flex items-center justify-center flex-wrap gap-5">
                 <NuxtLink to="/" exact-active-class="active">
                     Home
@@ -15,6 +15,10 @@
                     Form Builder
                 </NuxtLink>
             </ul>
+
+            <NuxtLink class="absolute right-4 top-1/2 -translate-y-1/2" to="/login" exact-active-class="active">
+                Sign in
+            </NuxtLink>
         </div>
     </header>
 </template>

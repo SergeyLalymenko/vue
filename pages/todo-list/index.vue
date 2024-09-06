@@ -108,7 +108,7 @@ useHead({
             >
                 Add Todo
             </UIButton>
-            <div class="mt-5" v-if="todos.length">
+            <div class="mt-5" v-if="todos?.length">
                 <TransitionGroup class="relative" name="todos" tag="ul" appear>
                     <ComponentTodoItem
                         v-for="todo in todos"

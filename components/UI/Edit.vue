@@ -6,24 +6,18 @@ const size = props.size || 'md';
 </script>
 
 <template>
-    <div class="edit" :class="[size]">
-        <EditIcon class="edit__icon" />
+    <div
+        class="edit flex items-center justify-center rounded-full border-solid border border-border p-1 transition-colors duration-200 cursor-pointer"
+        :class="[size]"
+    >
+        <EditIcon class="edit__icon text-border w-full transition-colors duration-200" />
     </div>
 </template>
 
 <style lang="scss" scoped>
 .edit {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid $colorBorder;
-    padding: 5px;
-    transition: .2s;
-    cursor: pointer;
 
     &.sm {
-        padding: 3px;
         width: 20px;
         min-width: 20px;
         height: 20px;
@@ -47,12 +41,6 @@ const size = props.size || 'md';
         .edit__icon {
             color: $colorActive;
         }
-    }
-
-    &__icon {
-        color: $colorBorder;
-        width: 100%;
-        height: auto;
     }
 }
 </style>
