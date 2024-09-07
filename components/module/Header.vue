@@ -1,3 +1,10 @@
+<script setup>
+import { signOut } from 'firebase/auth';
+
+const user = useCurrentUser();
+const auth = useFirebaseAuth();
+</script>
+
 <template>
     <header class="header w-full border-solid border-b border-divider">
         <div class="container mx-auto px-4 py-5 relative">
@@ -16,7 +23,16 @@
                 </NuxtLink>
             </ul>
 
-            <NuxtLink class="absolute right-4 top-1/2 -translate-y-1/2" to="/login" exact-active-class="active">
+            <p @click="signOut(auth)">
+                Sign out
+            </p>
+
+            <NuxtLink
+                v-if="!user"
+                class="absolute right-4 top-1/2 -translate-y-1/2"
+                to="/login"
+                exact-active-class="active"
+            >
                 Sign in
             </NuxtLink>
         </div>

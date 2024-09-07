@@ -1,5 +1,9 @@
 <script setup>
 import { ref, computed } from 'vue';
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+} from 'firebase/auth';
 
 const user = useCurrentUser();
 const auth = useFirebaseAuth();
@@ -43,8 +47,28 @@ function toggleMode() {
     isSigninMode.value = !isSigninMode.value;
 }
 
+function signIn() {
+    signInWithEmailAndPassword(auth, loginData.value.email, loginData.value.password)
+        .then((userCredential) => {
+            console.log('Signed in ', userCredential);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+function signUp() {
+    createUserWithEmailAndPassword(auth, loginData.value.email, loginData.value.password)
+        .then((userCredential) => {
+            console.log('Signed up ', userCredential);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
 function onSubmit() {
-    console.log(loginData.value);
+    isSigninMode.value ? signIn() : signUp();
 }
 </script>
 
